@@ -1,0 +1,62 @@
+﻿<!-- Custom decoder for Splunk -->
+
+<decoder name="splunk">
+  <prematch>ERROR</prematch>
+</decoder>
+
+<decoder name="splunk-user-manager-pro">
+  <parent>splunk</parent>
+  <prematch offset="after_parent">UserManagerPro</prematch>
+  <regex offset="after_prematch"> Login failed for \S+ user="(\w+)"</regex>
+  <order>user</order>
+</decoder>
+
+<decoder name="splunk-exec-processor">
+   <parent>splunk</parent>
+   <prematch offset="after_parent">ExecProcessor</prematch>
+   <regex offset="after_prematch"> message from "(\S+)" (\.+)</regex>
+   <order>url,extra_data</order>
+</decoder>
+
+<decoder name="splunk-application-update">
+   <parent>splunk</parent>
+   <prematch offset="after_parent">ApplicationUpdater</prematch>
+   <regex offset="after_prematch"> Error checking for update via (\S+): (\.+)</regex>
+   <order>url,extra_data</order>
+</decoder>
+
+<decoder name="splunk-dispatch-command">
+   <parent>splunk</parent>
+   <prematch offset="after_parent">DispatchCommand</prematch>
+   <regex offset="after_prematch"> Failed to start the search process</regex>
+   <order>id</order>
+</decoder>
+
+<decoder name="splunk-http-client">
+   <parent>splunk</parent>
+   <prematch offset="after_parent">HTTPClient</prematch>
+   <regex offset="after_prematch"> Cannot find host "(\S+)": (\.+)</regex>
+   <order>url,extra_data</order>
+</decoder>
+
+<decoder name="splunk-tcp-input-proc">
+   <parent>splunk</parent>
+   <prematch offset="after_parent">TcpInputProc</prematch>
+   <regex offset="after_prematch"> Error encountered for connection from src=(\S+). (\.+)</regex>
+   <order>srcip,extra_data</order>
+</decoder>
+
+<decoder name="splunk-http-rest-dispatcher">
+   <parent>splunk</parent>
+   <prematch offset="after_parent">HTTPRestDispatcher</prematch>
+   <regex offset="after_prematch"> SSO failed - User does not exist: (\S+)</regex>
+   <order>user</order>
+</decoder>
+
+<decoder name="splunk-admin-handler">
+   <parent>splunk</parent>
+   <prematch offset="after_parent">AdminHandler</prematch>
+   <regex offset="after_prematch">:(\w+) - (\.+)</regex>
+   <order>protocol,extra_data</order>
+</decoder>
+
