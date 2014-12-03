@@ -193,8 +193,8 @@ for line, patterns in tests_list:
     logtest_p = Popen([OSSEC_PATH], stdin=PIPE, stdout=PIPE, stderr=PIPE)
     outputs = logtest_p.communicate(input=line)
     for pattern in patterns:
-        #assert re.search(pattern, outputs[1]) is not None
-        if re.search(pattern, outputs[1]) is None:
-            import pdb;pdb.set_trace()
-            print line, outputs[1], pattern
+        assert re.search(pattern, outputs[1]) is not None
+        #if re.search(pattern, outputs[1]) is None:
+        #    import pdb;pdb.set_trace()
+        #    print line, outputs[1], pattern
 
