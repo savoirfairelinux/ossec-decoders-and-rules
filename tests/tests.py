@@ -1,7 +1,7 @@
 from subprocess import Popen, PIPE
 import re
 
-OSSES_PATH = "/opt/ossec/bin/ossec-logtest"
+OSSEC_PATH = "/opt/ossec/bin/ossec-logtest"
 
 tests_list = [("[SnmpBooster] [code 0102] Couldn't find 'loaded_by' configuration directive.",
                ["decoder: 'shinken-snmpbooster'",
@@ -190,7 +190,7 @@ tests_list = [("[SnmpBooster] [code 0102] Couldn't find 'loaded_by' configuratio
 
 
 for line, patterns in tests_list:
-    logtest_p = Popen(["/opt/ossec/bin/ossec-logtest"], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    logtest_p = Popen([OSSEC_PATH], stdin=PIPE, stdout=PIPE, stderr=PIPE)
     outputs = logtest_p.communicate(input=line)
     for pattern in patterns:
         #assert re.search(pattern, outputs[1]) is not None
