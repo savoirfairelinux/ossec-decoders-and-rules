@@ -1,0 +1,301 @@
+﻿<!-- Custom decoder for Shinken -->
+
+<decoder name="shinken">
+   <prematch>[Shinken]</prematch>
+</decoder>
+
+<decoder name="shinken-snmpbooster">
+   <prematch>[SnmpBooster]</prematch>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0102">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0102]</prematch>
+    <regex offset="after_prematch">Couldn't find 'loaded_by'</regex>
+    <order>id</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0103">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0103]</prematch>
+    <regex offset="after_prematch">'loaded_by' attribute must be in (\.+)</regex>
+    <order>extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0201">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0201]</prematch>
+    <regex offset="after_prematch">Import error. Pysnmp is missing</regex>
+    <order>id</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0202">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0202]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] Not found in database</regex>
+    <order>url</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0601">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0601]</prematch>
+    <regex offset="after_prematch">Import error. Pysnmp is missing</regex>
+    <order>id</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0603">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0603]</prematch>
+    <regex offset="after_prematch">[(\.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0606">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0606]</prematch>
+    <regex offset="after_prematch">[(\.+)] SNMP Error: (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0607">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0607]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] SNMP Error: (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0701">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0701]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] DS (\.+) not found to compute the trigger \((\.+)\)</regex>
+    <order>url, status, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0704">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0704]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] Trigger function error: found: (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0705">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0705]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] Trigger function '(\.+)' not found</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0707">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0707]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] RPN calculation Error: (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0709">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0709]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] Trigger error: (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0901">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0901]</prematch>
+    <regex offset="after_prematch">Import error. Maybe one of this module is missing: ConfigObj</regex>
+    <order>id</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0904">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0904]</prematch>
+    <regex offset="after_prematch">Datasource error while reading or merging in (\.+): `(\.+)'</regex>
+    <order>status, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0905">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0905]</prematch>
+    <regex offset="after_prematch">Datasource error while reading or merging: `(\.+)'</regex>
+    <order>extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0906">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0906]</prematch>
+    <regex offset="after_prematch">Error during the config conversion: (\.+)</regex>
+    <order>extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0907">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0907]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-0909">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 0909]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1001">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1001]</prematch>
+    <regex offset="after_prematch">Command line { (\.+) } parsing error: (\.+)$</regex>
+    <order>status, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1002">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1002]</prematch>
+    <regex offset="after_prematch">[(\d)] Exiting: (\.+)</regex>
+    <order>status, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1003">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1003]</prematch>
+    <regex offset="after_prematch">Exiting: (\.+)</regex>
+    <order>extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1004">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1004]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)]</regex>
+    <order>url</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1005">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1005]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)]</regex>
+    <order>url</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1007">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1007]</prematch>
+    <regex offset="after_prematch">Parent requests termination</regex>
+    <order>id</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1102">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1102]</prematch>
+    <regex offset="after_prematch">Please set datasource parameter</regex>
+    <order>id</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1201">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1201]</prematch>
+    <regex offset="after_prematch">Import error</regex>
+    <order>id</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1202">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1202]</prematch>
+    <regex offset="after_prematch">Connection error: (\.+)</regex>
+    <order>extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1203">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1203]</prematch>
+    <regex offset="after_prematch"> (\.+) error putting data in cache: (\.+)</regex>
+    <order>status,extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1204">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1204]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1206">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1206]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1207">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1207]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1208">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1208]</prematch>
+    <regex offset="after_prematch">[(\.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1301">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1301]</prematch>
+    <regex offset="after_prematch">Import error</regex>
+    <order>id</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1302">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1302]</prematch>
+    <regex offset="after_prematch">Connection error: (\.+)</regex>
+    <order>extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1303">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1303]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1304">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1304]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1305">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1305]</prematch>
+    <regex offset="after_prematch">[(\.+, \.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1306">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1306]</prematch>
+    <regex offset="after_prematch">[(\.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1307">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1307]</prematch>
+    <regex offset="after_prematch">[(\.+)] Unknown service (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+<decoder name="shinken-snmpbooster-1308">
+    <parent>shinken-snmpbooster</parent>
+    <prematch offset="after_parent">[code 1308]</prematch>
+    <regex offset="after_prematch">[(\.+)] (\.+)</regex>
+    <order>url, extra_data</order>
+</decoder>
+
+
+
+
+
